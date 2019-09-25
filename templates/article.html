@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 {% block title %}{{ super() }} : {{ article.title }}{% endblock %}
-{% block content %}        
+
+{% block content %}
 <header>
 <h1><a href="{{ SITEURL }}" id="site-title"> {#{{ SITENAME }}#} {% if SITESUBTITLE %} <strong>{{ SITESUBTITLE }}</strong>{% endif %}</a> {#:#}
         <a href="{{ SITEURL }}/{{ article.url }}" id="page-title">{{ article.title }}</a></h1>
     {% if not HIDE_DATE %}<time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>{% endif %}
 </header>
+
+<div id="back">
+  <a href="{{ SITEURL }}">Return to Launch Page</a> 
+</div>
+
 <article>
     {{ article.content }}
     {% if DISQUS_SITENAME and SITEURL and article.status != "draft" %}
@@ -26,4 +32,6 @@
     <noscript>Please enable JavaScript to view the comments.</noscript>
     {% endif %}
 </article>
+
+
 {% endblock %}

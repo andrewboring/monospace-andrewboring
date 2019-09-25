@@ -18,13 +18,14 @@
         <!--[if lt IE 7]>
                 <link rel="stylesheet" type="text/css" media="all" href="{{ SITEURL }}/css/ie6.css"/><![endif]-->
 
+		<link rel="stylesheet" href="{{ SITEURL }}/theme/css/youtube.css" type="text/css" />
+
 </head>
 
 <body>
-	<div id="wrap" style="width:850px">
-	    <div id="container" style="width:560px">
+  	<div id="wrap" style="width:1024px">
+	      <div id="container" style="width:700px">
             {% include 'github.html' %}
-
 
             <div class="entry">
                 {% block content %}
@@ -33,56 +34,60 @@
         </div>
 
 
+
         <div id="sidebar">
             <h1><a href="{{ SITEURL }} " title="title">{{ SITENAME }}</a></h1>
             <span class="description">{{ DESCRIPTION }} </span>
             <!-- <span class="feed"><a href="">RSS</a> | <a href="">Atom</a></span> -->
 
+			      <p>&nbsp;</p>
             <nav>
-                <ul>
+				          <h2>Pages</h2>
+                  <ul>
                 {% for page in pages %}
                     <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a>{% if not loop.last %} {% endif %}</li>
                 {% endfor %}
-                {% if categories|length > 1 %}
-                    <li>:: <a href="{{ SITEURL }}/categories.html">Categories</a></li>
-                {% endif %}
-                {% if tags|length > 1 %}
-                    <li>:: <a href="{{ SITEURL }}/tags.html">Tags</a></li>
-                {% endif %}
                 </ul>
             </nav>
 
 	        {% if LINKS %}
                 <div class="widget blogroll">
-                        <h2>Blogroll</h2>
+                        <h2>Links</h2>
                         <ul>
                         {% for name, link in LINKS %}
                             <li><a href="{{ link }}">{{ name }}</a></li>
                         {% endfor %}
                         </ul>
-                </div><!-- /.blogroll --> 
+                </div><!-- /.blogroll -->
    		     {% endif %}
        		 {% if SOCIAL %}
                 <div class="widget social">
                         <h2>Social</h2>
                         <ul>
-                            <li><a href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}" rel="alternate">atom feed</a></li>
-                            {% if FEED_RSS %}
-                            <li><a href="{{ SITEURL }}/{{ FEED_RSS }}" rel="alternate">rss feed</a></li>
-                            {% endif %}
-
                         {% for name, link in SOCIAL %}
                             <li><a href="{{ link }}">{{ name }}</a></li>
                         {% endfor %}
                         </ul>
                	</div>
-        	{% endif %}
+          	{% endif %}
 
-		</div>
 
-		<div id="footer">
+            <div class="widget blogroll">
+                <h2>Data</h2>
+                <ul>
+                    <li><a href="{{ SITEURL }}/sitemap.xml">sitemap</a></li>
+                    <li><a href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}" rel="alternate">atom feed</a></li>
+                    {% if FEED_RSS %}
+                    <li><a href="{{ SITEURL }}/{{ FEED_RSS }}" rel="alternate">rss feed</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+
+		    </div>
+
+		    <div id="footer">
         	<div id="credits">
-           		 <span>Powered by Thoughts and Prayers</span>
+           		 <span></span>
        		 </div>
       	 </div>
 
@@ -91,7 +96,7 @@
     {% include 'disqus_script.html' %}
 
     </div>
-                
 
+<script src="https://embed.small.chat/T69NDBZ7DG6AMU0S14.js" async></script>
 </body>
 </html>

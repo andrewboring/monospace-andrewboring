@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }}{% endblock %}
+
+
+{% block content %}
+<header>
+<h1><a href="{{ SITEURL }}" id="site-title"> {#{{ SITENAME }}#} {% if SITESUBTITLE %} <strong>{{ SITESUBTITLE }}</strong>{% endif %}</a> {#:#}
+        <a href="{{ SITEURL }}/{{ page.url }}" id="page-title">{{ page.title }}</a></h1>
+</header>
+
+<article>
+  {{ page.content }}
+</article>
+
+
+<section class="home">
+
+
+<h3>Weblog (Recent)</h3>
+<hr>
+<ul>
+{% set recent = articles if not all_articles else all_articles %}
+{% for article in recent if article.category == "weblog" %}
+  {% if loop.index <= 5 %}
+    <li>
+      <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
+    </li>
+  {% endif %}
+{% endfor %}
+</ul>
+</section>
+
+<section class="home">
+
+<h3>Braggadocio</h3>
+<hr>
+<ul>
+
+    {% for article in articles if article.category == "self-promo" %}
+     <li><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></li>
+    {% endfor %}
+
+</ul>
+</section>
+
+<section>
+
+{% set recent = articles if not all_articles else all_articles %}
+  {% for article in recent if article.category == "weblog" %}
+    {% if loop.index <= 1 %}
+    <h3>Latest Post</h3>
+    <hr>
+    <h3><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title}}</a></h3>
+    {{ article.summary }}
+      <a href="{{ SITEURL }}/{{ article.url }}">Read more</a>
+    {% endif %}
+  {% endfor %}
+</section>
+
+
+
+<!-- <a href="{{ SITEURL }}/{{ INDEX_SAVE_AS}}">All Content</a> -->
+
+{% endblock %}
